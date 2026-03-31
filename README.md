@@ -13,6 +13,7 @@ You (the orchestrator) take a list of tasks and drive them to completion by dele
 **Key principles:**
 - You write zero code. All implementation is delegated to Claude Code.
 - One task at a time. Never start the next task until the current one is committed.
+- Security review before every commit. After each task, run `/security-review` — if vulnerabilities are found, fix them first, then commit.
 - Watchdog duty. Actively monitor Claude Code and intervene if it stalls or dies.
 - Structured handoffs. Every prompt to Claude Code is specific and references the source document.
 

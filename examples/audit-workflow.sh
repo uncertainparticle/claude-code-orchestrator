@@ -59,9 +59,10 @@ For each finding:
 2. If the plan is off-target: 'This plan is off-scope. The finding is specifically about [X].'
 3. Wait for completion.
 4. If errors: 'Analyze the error and resolve the issue.'
-5. If clean: 'Please commit and push to $BRANCH with message: fix: [finding title]'
-6. Wait for commit confirmation.
-7. Move to the next finding.
+5. If clean: Run /security-review on the changes. If vulnerabilities are found, delegate fixes until clean.
+6. Once security review passes: 'Please commit and push to $BRANCH with message: fix: [finding title]'
+7. Wait for commit confirmation.
+8. Move to the next finding.
 
 After all findings:
 1. Produce a final summary table (Finding | Commit | Status)

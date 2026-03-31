@@ -101,7 +101,22 @@ Wait for Claude Code to complete. If the session dies before completing:
 3. Resume: `claude --resume [session-id]` or start a new session for remaining work
 4. Report what was completed vs. remaining
 
-### Step 4 — Review Completion
+### Step 4 — Security Review
+
+After the main implementation is clean (no errors), **run a security review before committing.**
+
+Prompt Claude Code:
+> Run `/security-review` on the code changes introduced by this task. Check for: injection vectors, auth bypass, data exposure, input validation gaps, dependency vulnerabilities, and any patterns that could introduce security regressions.
+
+If vulnerabilities are found:
+1. Delegate the fixes: "The security review found [list of issues]. Implement fixes for each."
+2. After fixes are applied, run `/security-review` again to verify all issues are resolved.
+3. Once clean, proceed to commit.
+
+If no vulnerabilities are found:
+> Proceed with commit.
+
+### Step 5 — Review Completion
 
 If errors or test failures:
 > Analyze the error and resolve the issue.
@@ -117,7 +132,7 @@ Commit prefix convention:
 - `refactor:` for structural improvements
 - `chore:` for config, tooling, or housekeeping
 
-### Step 5 — Confirm and Advance
+### Step 6 — Confirm and Advance
 
 Wait for Claude Code to confirm the commit and push succeeded. Only then move to the next task.
 
@@ -191,8 +206,10 @@ For each finding:
 2. Review the plan, reply "proceed with implementation"
 3. Wait for completion:
    - If errors → "analyze the error and resolve the issue"
-   - If clean → "please commit and push to [branch] with message: [prefix]: [finding title]"
-4. Wait for commit confirmation, then move to next
+   - If clean → run `/security-review` on the changes
+4. If security issues are found: delegate fixes to Claude Code, then re-run `/security-review` until clean
+5. Once security review passes: "please commit and push to [branch] with message: [prefix]: [finding title]"
+6. Wait for commit confirmation, then move to next
 
 Health check: every 5 minutes, check Claude Code status.
 If the process has stopped or died: "resume where you left off on [current finding]"

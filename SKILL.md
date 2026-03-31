@@ -1,6 +1,16 @@
+---
+name: claude-code-orchestrator
+description: >
+  Orchestrate sequential coding task implementation by delegating to Claude Code. Built for and tested in
+  OpenClaw (headless AI agent runtime). Use when given a list of findings, fixes, audit items, or
+  implementation tasks to work through one-by-one. Triggers on: "delegate to Claude Code orchestrator",
+  "work through audit findings sequentially", "orchestrate a list of tasks", "implement recommendations
+  in order". The orchestrator never writes code — it prompts, monitors, reviews plans, commits, and advances.
+---
+
 # Claude Code Orchestrator — Skill Reference
 
-This is the agent-facing skill definition. It defines how an AI orchestrator should drive sequential coding tasks using Claude Code.
+This is the agent-facing skill definition. It defines how an AI orchestrator should drive sequential coding tasks using Claude Code in OpenClaw.
 
 ---
 

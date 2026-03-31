@@ -1,6 +1,8 @@
 # Claude Code Orchestrator
 
-A lightweight, reusable orchestration pattern for delegating sequential coding tasks to Claude Code. Designed for agents running in background PTY sessions — the orchestrator prompts, monitors, handles failures, and drives tasks to completion without writing any code itself.
+A lightweight, reusable orchestration pattern for delegating sequential coding tasks to Claude Code. Designed for and tested in **OpenClaw** (headless AI agent runtime) running in background PTY sessions — the orchestrator prompts, monitors, handles failures, and drives tasks to completion without writing any code itself.
+
+> **Built for OpenClaw.** This pattern was developed and tested in production with OpenClaw. The orchestrator runs as an AI agent that coordinates Claude Code via background PTY sessions, automatically committing after each task and resuming if sessions are interrupted.
 
 ---
 
@@ -20,6 +22,7 @@ You (the orchestrator) take a list of tasks and drive them to completion by dele
 
 ### Prerequisites
 
+- **OpenClaw** installed and running (this pattern is designed for OpenClaw agents)
 - Claude Code CLI installed (`npm install -g @anthropic-ai/claude-code`)
 - Git
 - Model: `claude-opus-4-6` (or your preferred model)
